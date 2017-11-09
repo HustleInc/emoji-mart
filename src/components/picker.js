@@ -472,6 +472,7 @@ export default class Picker extends React.PureComponent {
                 custom={
                   category.name == 'Recent' ? CUSTOM_CATEGORY.emojis : undefined
                 }
+                unfocusable={unfocusable}
                 emojiProps={{
                   native: native,
                   skin: skin,
@@ -481,6 +482,7 @@ export default class Picker extends React.PureComponent {
                   forceSize: native,
                   tooltip: emojiTooltip,
                   backgroundImageFn: backgroundImageFn,
+                  unfocusable: unfocusable,
                   onOver: this.handleEmojiOver,
                   onLeave: this.handleEmojiLeave,
                   onClick: this.handleEmojiClick,
