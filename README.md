@@ -45,6 +45,7 @@ import { Picker } from 'emoji-mart'
 | **skin** | | `1` | Default skin color: `1, 2, 3, 4, 5, 6` |
 | **style** | | | Inline styles applied to the root element. Useful for positioning |
 | **title** | | `Emoji Mart™` | The title shown when no emojis are hovered |
+| **unfocusable** | | `false` | Make emoji-mart not take focus when you are selecting within it |
 
 #### I18n
 ```js
