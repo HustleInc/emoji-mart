@@ -422,6 +422,7 @@ export default class Picker extends React.PureComponent {
         exclude,
         recent,
         autoFocus,
+        unfocusable,
       } = this.props,
       { skin } = this.state,
       width = perLine * (emojiSize + 12) + 12 + 2 + measureScrollbar()
@@ -438,16 +439,18 @@ export default class Picker extends React.PureComponent {
           />
         </div>
 
-        <Search
-          ref={this.setSearchRef}
-          onSearch={this.handleSearch}
-          i18n={this.i18n}
-          emojisToShowFilter={emojisToShowFilter}
-          include={include}
-          exclude={exclude}
-          custom={CUSTOM_CATEGORY.emojis}
-          autoFocus={autoFocus}
-        />
+        {!unfocusable && (
+          <Search
+            ref={this.setSearchRef}
+            onSearch={this.handleSearch}
+            i18n={this.i18n}
+            emojisToShowFilter={emojisToShowFilter}
+            include={include}
+            exclude={exclude}
+            custom={CUSTOM_CATEGORY.emojis}
+            autoFocus={autoFocus}
+          />
+        )}
 
         <div
           ref={this.setScrollRef}
@@ -534,6 +537,7 @@ Picker.propTypes = {
   exclude: PropTypes.arrayOf(PropTypes.string),
   recent: PropTypes.arrayOf(PropTypes.string),
   autoFocus: PropTypes.bool,
+  unfocusable: PropTypes.bool,
   custom: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
