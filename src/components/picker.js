@@ -436,6 +436,7 @@ export default class Picker extends React.PureComponent {
             color={color}
             categories={this.categories}
             onAnchorClick={this.handleAnchorClick}
+            unfocusable={unfocusable}
           />
         </div>
 
@@ -472,7 +473,6 @@ export default class Picker extends React.PureComponent {
                 custom={
                   category.name == 'Recent' ? CUSTOM_CATEGORY.emojis : undefined
                 }
-                unfocusable={unfocusable}
                 emojiProps={{
                   native: native,
                   skin: skin,
@@ -570,4 +570,5 @@ Picker.defaultProps = {
   emojiTooltip: Emoji.defaultProps.tooltip,
   autoFocus: false,
   custom: [],
+  unfocusable: false,
 }

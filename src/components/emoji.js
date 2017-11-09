@@ -23,8 +23,19 @@ const _getSanitizedData = props => {
   return getSanitizedData(emoji, skin, set)
 }
 
+const _handleMouseDown = (e, props) => {
+  if (!props.unfocusable || !props.onClick) {
+    return
+  }
+  e.preventDefault();
+  var { onClick } = props,
+    emoji = _getSanitizedData(props)
+
+  onClick(emoji, e)
+}
+
 const _handleClick = (e, props) => {
-  if (!props.onClick) {
+  if (props.unfocusable || !props.onClick) {
     return
   }
   var { onClick } = props,
@@ -116,6 +127,7 @@ const Emoji = props => {
   return (
     <span
       key={props.emoji.id || props.emoji}
+      onMouseDown={e => _handleMouseDown(e, props)}
       onClick={e => _handleClick(e, props)}
       onMouseEnter={e => _handleOver(e, props)}
       onMouseLeave={e => _handleLeave(e, props)}
@@ -128,6 +140,7 @@ const Emoji = props => {
 }
 
 Emoji.propTypes = {
+  unfocusable: PropTypes.bool,
   onOver: PropTypes.func,
   onLeave: PropTypes.func,
   onClick: PropTypes.func,

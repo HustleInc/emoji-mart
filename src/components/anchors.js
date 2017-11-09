@@ -31,7 +31,23 @@ export default class Anchors extends React.PureComponent {
     }
   }
 
+  handleMouseDown(e) {
+    if (!this.props.unfocusable) {
+      return
+    }
+    e.preventDefault()
+
+    var index = e.currentTarget.getAttribute('data-index')
+    var { categories, onAnchorClick } = this.props
+
+    onAnchorClick(categories[index], index)
+  }
+
   handleClick(e) {
+    if (this.props.unfocusable) {
+      return
+    }
+
     var index = e.currentTarget.getAttribute('data-index')
     var { categories, onAnchorClick } = this.props
 
@@ -57,6 +73,7 @@ export default class Anchors extends React.PureComponent {
               key={name}
               title={i18n.categories[name.toLowerCase()]}
               data-index={i}
+              onMouseDown={this.handleMouseDown}
               onClick={this.handleClick}
               className={`emoji-mart-anchor ${isSelected
                 ? 'emoji-mart-anchor-selected'
@@ -77,6 +94,7 @@ export default class Anchors extends React.PureComponent {
 }
 
 Anchors.propTypes = {
+  unfocusable: PropTypes.bool,
   categories: PropTypes.array,
   onAnchorClick: PropTypes.func,
 }
